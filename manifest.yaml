@@ -1,0 +1,51 @@
+version: 0.0.1
+type: plugin
+author: yzddmr6
+name: chatflow_invoker
+label:
+  en_US: Chatflow Invoker
+  ja_JP: Chatflow Invoker
+  zh_Hans: Chatflow Invoker
+  pt_BR: Chatflow Invoker
+description:
+  en_US: Transform any chatflow into a node in the canvas to implement cross-Chatflow calls
+  ja_JP: Transform any chatflow into a node in the canvas to implement cross-Chatflow calls
+  zh_Hans: 将Chatflow转换为流程编排中的节点，实现跨Chatflow调用。
+  pt_BR: Transform any chatflow into a node in the canvas to implement cross-Chatflow calls
+icon: icon.svg
+resource:
+  memory: 268435456
+  permission:
+    tool:
+      enabled: true
+    model:
+      enabled: true
+      llm: true
+      text_embedding: false
+      rerank: false
+      tts: false
+      speech2text: false
+      moderation: false
+    node:
+      enabled: false
+    endpoint:
+      enabled: false
+    app:
+      enabled: true
+
+plugins:
+  tools:
+    - provider/chatflow_invoker.yaml
+meta:
+  version: 0.0.1
+  arch:
+    - amd64
+    - arm64
+  runner:
+    language: python
+    version: "3.12"
+    entrypoint: main
+  minimum_dify_version: null
+created_at: 2025-07-15T16:49:59.622193+08:00
+privacy: PRIVACY.md
+verified: false

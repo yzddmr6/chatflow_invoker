@@ -1,0 +1,63 @@
+identity:
+  name: chatflow_invoker
+  author: yzddmr6
+  label:
+    en_US: Chatflow Invoker
+    zh_Hans: Chatflow Invoker
+    pt_BR: Chatflow Invoker
+description:
+  human:
+    en_US: Transform any chatflow into a node in the canvas to implement cross-Chatflow calls
+    zh_Hans: 将Chatflow转换为流程编排中的节点，实现跨Chatflow调用。
+    pt_BR: Transform any chatflow into a node in the canvas to implement cross-Chatflow calls
+  llm: Transform any chatflow into a node in the canvas to implement cross-Chatflow calls
+parameters:
+  - name: app_id
+    type: string
+    required: true
+    label:
+      en_US: App ID
+      zh_Hans: APP ID
+      pt_BR: App ID
+    human_description:
+      en_US: The app ID of the chatflow to call, can be obtained from the URL of the Chatflow page in Dify
+      zh_Hans: 需要调用的Chatflow的APP ID，可以从Dify的Chatflow页面URL中获取
+      pt_BR: The app ID of the chatflow to call, can be obtained from the URL of the Chatflow page in Dify
+    llm_description: The app ID of the chatflow to call, can be obtained from the URL of the Chatflow page in Dify
+    form: llm
+  - name: query
+    type: string
+    required: true
+    label:
+      en_US: Query string
+      zh_Hans: Prompt
+      pt_BR: Query string
+    human_description:
+      en_US: The prompt to send to the chatflow
+      zh_Hans: 要发送的Prompt
+      pt_BR: The prompt to send to the chatflow
+    llm_description: The prompt to send to the chatflow
+    form: llm
+  - name: inputs_json
+    type: string
+    required: false
+    label:
+      en_US: Inputs JSON
+      zh_Hans: Inputs JSON
+      pt_BR: Inputs JSON
+    human_description:
+      en_US: JSON string containing input parameters for the chatflow start node
+      zh_Hans: Chatflow开始节点的输入参数，JSON字符串格式
+      pt_BR: JSON string containing input parameters for the chatflow start node
+    llm_description: JSON string containing input parameters for the chatflow start node
+    form: llm
+
+output_schema:
+  type: object
+  properties:
+    stream_output:
+      type: string
+      description: The streaming output of the chatflow
+extra:
+  python:
+    source: tools/chatflow_invoker.py
