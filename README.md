@@ -39,9 +39,11 @@ Chatflow Invoker可以将Chatflow转换为流程编排中的节点，实现跨Ch
 
 首先打开待调用Chatflow的URL，从中获取APP ID
 
-例如：https://dify/app/f011f58c-b1ce-4a9b-89b2-f39fce8466a8/workflow，f011f58c-b1ce-4a9b-89b2-f39fce8466a8就是APP ID
+例如：https://dify/app/f011f58c-b1ce-4a9b-89b2-f39fce8466a8/workflow
 
-Inputs JSON这里为输入的参数，这里设置为需要收到一个user的参数。
+这里的 `f011f58c-b1ce-4a9b-89b2-f39fce8466a8` 就是APP ID
+
+Inputs JSON这里设置为需要收到一个user的参数。
 
 ![image-20250721174829878](./assets/image-20250721174829878.png)
 
