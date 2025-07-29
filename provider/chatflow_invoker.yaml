@@ -11,7 +11,8 @@ identity:
     pt_BR: Transform any chatflow into a node in the canvas to implement cross-Chatflow calls
   icon: icon.svg
 tools:
-  - tools/chatflow_invoker.yaml
+  - tools/local_chatflow_invoker.yaml
+  - tools/remote_chatflow_invoker.yaml
 extra:
   python:
     source: provider/chatflow_invoker.py

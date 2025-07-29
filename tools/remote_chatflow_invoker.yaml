@@ -1,0 +1,107 @@
+identity:
+  name: remote_chatflow_invoker
+  author: yzddmr6
+  label:
+    en_US: Remote Chatflow Invoker
+    zh_Hans: 远程Chatflow调用
+    pt_BR: Remote Chatflow Invoker
+description:
+  human:
+    en_US: Invoke any chatflow through HTTP protocol
+    zh_Hans: 通过HTTP协议，调用远程Dify上的Chatflow。
+    pt_BR: Invoke any chatflow through HTTP protocol
+  llm: Invoke any chatflow through HTTP protocol
+parameters:
+  - name: url_base
+    type: string
+    required: true
+    label:
+      en_US: URL
+      zh_Hans: URL
+      pt_BR: URL
+    human_description:
+      en_US: The URL of the Dify instance to call, for example http://127.0.0.1:5001/v1/chat-messages
+      zh_Hans: 需要调用的远程Dify的URL，例如：http://127.0.0.1:5001/v1/chat-messages
+      pt_BR: The URL of the Dify instance to call, for example http://127.0.0.1:5001/v1/chat-messages
+    llm_description: The URL of the Dify instance to call, for example http://127.0.0.1:5001/v1/chat-messages
+    form: llm
+
+  - name: api_key
+    type: string
+    required: true
+    label:
+      en_US: API Key
+      zh_Hans: API Key
+      pt_BR: API Key
+    human_description:
+      en_US: The API key of the Dify instance to call
+      zh_Hans: 需要调用的远程Chatflow的API Key
+      pt_BR: The API key of the Dify instance to call
+    llm_description: The API key of the Dify instance to call
+    form: llm
+
+  - name: query
+    type: string
+    required: true
+    label:
+      en_US: Prompt
+      zh_Hans: Prompt
+      pt_BR: Prompt
+    human_description:
+      en_US: The prompt to send to the chatflow
+      zh_Hans: 要发送的Prompt
+      pt_BR: The prompt to send to the chatflow
+    llm_description: The prompt to send to the chatflow
+    form: llm
+
+  - name: inputs_json
+    type: string
+    required: false
+    label:
+      en_US: Inputs JSON
+      zh_Hans: Inputs JSON
+      pt_BR: Inputs JSON
+    human_description:
+      en_US: JSON string containing input parameters for the chatflow start node
+      zh_Hans: Chatflow开始节点的输入参数，JSON字符串格式
+      pt_BR: JSON string containing input parameters for the chatflow start node
+    llm_description: JSON string containing input parameters for the chatflow start node
+    form: llm
+
+  - name: user
+    type: string
+    required: false
+    label:
+      en_US: User
+      zh_Hans: User
+      pt_BR: User
+    human_description:
+      en_US: The user identifier for the chatflow
+      zh_Hans: Chatflow用户标识，用于定义终端用户的身份，方便检索、统计。
+      pt_BR: The user identifier for the chatflow
+    llm_description: The user identifier for the chatflow
+    form: llm
+
+  - name: conversation_id
+    type: string
+    required: false
+    label:
+      en_US: Conversation ID
+      zh_Hans: Conversation ID
+      pt_BR: Conversation ID
+    human_description:
+      en_US: The conversation ID for the chatflow, must pass the conversation_id of the previous message to continue the conversation
+      zh_Hans: Chatflow会话ID，需要基于之前的聊天记录继续对话，必须传之前消息的 conversation_id
+      pt_BR: The conversation ID for the chatflow, must pass the conversation_id of the previous message to continue the conversation
+    llm_description: The conversation ID for the chatflow, must pass the conversation_id of the previous message to continue the conversation
+    form: llm
+
+output_schema:
+  type: object
+  properties:
+    stream_output:
+      type: string
+      description: The streaming output of the chatflow
+extra:
+  python:
+    source: tools/remote_chatflow_invoker.py

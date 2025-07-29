@@ -7,7 +7,7 @@ import json
 
 debug=False
 
-class ChatflowInvokerTool(Tool):
+class LocalChatflowInvokerTool(Tool):
     def _invoke(self, tool_parameters: dict[str, Any]) -> Generator[ToolInvokeMessage]:
         if debug:
             print(tool_parameters)
@@ -28,7 +28,7 @@ class ChatflowInvokerTool(Tool):
             query=tool_parameters.get("query"),
             inputs=inputs,
             response_mode="streaming",
-            conversation_id=""  # 可选，留空则创建新对话
+            conversation_id=tool_parameters.get("conversation_id", "")  # 可选，留空则创建新对话
         )
 
         for data in response:

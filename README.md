@@ -1,8 +1,19 @@
 ## Chatflow Invoker
 
 **Author:** yzddmr6
-**Version:** 0.0.1
+**Version:** 0.0.2
 **Type:** tool
+
+### Changelog
+
+#### v0.0.2
+
+* Added remote Chatflow calls
+* Added Conversation ID parameter
+
+#### v0.0.1
+
+* Supported local cross-Chatflow calls
 
 ### Background
 
@@ -25,13 +36,19 @@ It can help you:
 * **Support cross-Chatflow invocation:** Seamlessly call between different Chatflows to enable more flexible business process orchestration.
 * **Maintain streaming output experience:** Ensure that Dify’s original streaming output capability is retained even in multi-Chatflow invocation scenarios.
 
-There are three input parameters:
+### Local Chatflow Call
 
-* APP ID (required): The APP ID of the Chatflow to be invoked, which can be obtained from the URL of the Chatflow page in Dify.
+Input Parameters:
+
+* App ID (required): The Chatflow app ID to be called. This can be obtained from the Chatflow page URL in Dify.
+
 * Prompt (required): The prompt to be sent.
-* Inputs JSON (optional): Input parameters for the start node of the Chatflow, in JSON string format.
 
-### Example
+* Inputs JSON (optional): Input parameters for the Chatflow start node, in JSON string format.
+
+* Conversation ID (optional): The Chatflow conversation ID. To continue a conversation based on a previous chat log, you must pass the conversation_id of the previous message.
+
+#### Example
 
 Here, a simple scenario is simulated.
 
@@ -52,3 +69,26 @@ In the reply node, select `stream_output` to obtain streaming output results.
 Upon testing, the other Chatflow is successfully invoked, and streaming output is supported.
 
 ![image-20250721174245191](./assets/image-20250721174245191.png)
+
+
+
+### Remote Chatflow Call
+
+To further expand Dify's flexibility, this plugin supports remote Chatflow calls. You're no longer limited to a single Dify instance; you can freely combine them to implement distributed calls based on your business needs.
+
+Input Parameters:
+
+* URL (required): The URL of the remote Dify call you want to make, for example: http://127.0.0.1:5001/v1/chat-messages
+* API Key (required): The API key for the remote Chatflow call you want to make. For the first time, you'll need to generate one from the Access API section in the sidebar.
+
+* Prompt (required): The prompt to send.
+
+* Inputs JSON (optional): Input parameters for the Chatflow start node, in JSON string format.
+
+* User (optional): The Chatflow user ID, used to identify the end user for easy retrieval and statistics.
+
+* Conversation ID (optional): The Chatflow conversation ID. To continue a conversation based on a previous chat log, you must pass the conversation_id of the previous message.
+
+Usage Example
+
+![image-20250729163100028](./assets/image-20250729163100028.png)

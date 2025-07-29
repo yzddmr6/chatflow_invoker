@@ -1,16 +1,16 @@
 identity:
-  name: chatflow_invoker
+  name: local_chatflow_invoker
   author: yzddmr6
   label:
-    en_US: Chatflow Invoker
-    zh_Hans: Chatflow Invoker
-    pt_BR: Chatflow Invoker
+    en_US: Local Chatflow Invoker
+    zh_Hans: 本地Chatflow调用
+    pt_BR: Local Chatflow Invoker
 description:
   human:
-    en_US: Transform any chatflow into a node in the canvas to implement cross-Chatflow calls
-    zh_Hans: 将Chatflow转换为流程编排中的节点，实现跨Chatflow调用。
-    pt_BR: Transform any chatflow into a node in the canvas to implement cross-Chatflow calls
-  llm: Transform any chatflow into a node in the canvas to implement cross-Chatflow calls
+    en_US: Invoke any chatflow through Dify internal API
+    zh_Hans: 通过内部接口，调用当前Dify实例下的Chatflow。
+    pt_BR: Invoke any chatflow through Dify internal API
+  llm: Invoke any chatflow through Dify internal API
 parameters:
   - name: app_id
     type: string
@@ -51,6 +51,19 @@ parameters:
       pt_BR: JSON string containing input parameters for the chatflow start node
     llm_description: JSON string containing input parameters for the chatflow start node
     form: llm
+  - name: conversation_id
+    type: string
+    required: false
+    label:
+      en_US: Conversation ID
+      zh_Hans: Conversation ID
+      pt_BR: Conversation ID
+    human_description:
+      en_US: The conversation ID for the chatflow, must pass the conversation_id of the previous message to continue the conversation
+      zh_Hans: Chatflow会话ID，需要基于之前的聊天记录继续对话，必须传之前消息的 conversation_id
+      pt_BR: The conversation ID for the chatflow, must pass the conversation_id of the previous message to continue the conversation
+    llm_description: The conversation ID for the chatflow, must pass the conversation_id of the previous message to continue the conversation
+    form: llm
 
 output_schema:
   type: object
@@ -60,4 +73,4 @@ output_schema:
       description: The streaming output of the chatflow
 extra:
   python:
-    source: tools/chatflow_invoker.py
+    source: tools/local_chatflow_invoker.py
