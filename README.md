@@ -1,10 +1,14 @@
 ## Chatflow Invoker
 
 **Author:** yzddmr6
-**Version:** 0.0.2
+**Version:** 0.0.3
 **Type:** tool
 
 ### Changelog
+
+#### v0.0.3
+
+* Update dify_plugin dependency version
 
 #### v0.0.2
 
