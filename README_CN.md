@@ -1,10 +1,18 @@
 ## Chatflow Invoker
 
 **Author:** yzddmr6
-**Version:** 0.0.3
+**Version:** 0.0.4
 **Type:** tool
+**Repository:** https://github.com/yzddmr6/chatflow_invoker
 
 ### 更新日志
+
+#### v0.04
+
+* 支持查看被调用Chatflow的报错信息
+* Local Invoker支持使用勾选App的方式来选择调用的Chatflow，不需要再手动输入App ID
+* 修复Conversation ID的维护逻辑，保持会话上下文
+
 
 #### v0.0.3
 

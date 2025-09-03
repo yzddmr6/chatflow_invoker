@@ -24,8 +24,7 @@ parameters:
       zh_Hans: 需要调用的远程Dify的URL，例如：http://127.0.0.1:5001/v1/chat-messages
       pt_BR: The URL of the Dify instance to call, for example http://127.0.0.1:5001/v1/chat-messages
     llm_description: The URL of the Dify instance to call, for example http://127.0.0.1:5001/v1/chat-messages
-    form: llm
-
+    form: form
   - name: api_key
     type: string
     required: true
@@ -38,8 +37,7 @@ parameters:
       zh_Hans: 需要调用的远程Chatflow的API Key
       pt_BR: The API key of the Dify instance to call
     llm_description: The API key of the Dify instance to call
-    form: llm
-
+    form: form
   - name: query
     type: string
     required: true
@@ -52,8 +50,7 @@ parameters:
       zh_Hans: 要发送的Prompt
       pt_BR: The prompt to send to the chatflow
     llm_description: The prompt to send to the chatflow
-    form: llm
-
+    form: form
   - name: inputs_json
     type: string
     required: false
@@ -66,8 +63,7 @@ parameters:
       zh_Hans: Chatflow开始节点的输入参数，JSON字符串格式
       pt_BR: JSON string containing input parameters for the chatflow start node
     llm_description: JSON string containing input parameters for the chatflow start node
-    form: llm
-
+    form: form
   - name: user
     type: string
     required: false
@@ -80,21 +76,21 @@ parameters:
       zh_Hans: Chatflow用户标识，用于定义终端用户的身份，方便检索、统计。
       pt_BR: The user identifier for the chatflow
     llm_description: The user identifier for the chatflow
-    form: llm
-
-  - name: conversation_id
-    type: string
+    form: form
+  - name: keep_conversation
+    type: boolean
+    default: true
     required: false
     label:
-      en_US: Conversation ID
-      zh_Hans: Conversation ID
-      pt_BR: Conversation ID
+      en_US: Keep Conversation
+      zh_Hans: Keep Conversation
+      pt_BR: Keep Conversation
     human_description:
-      en_US: The conversation ID for the chatflow, must pass the conversation_id of the previous message to continue the conversation
-      zh_Hans: Chatflow会话ID，需要基于之前的聊天记录继续对话，必须传之前消息的 conversation_id
-      pt_BR: The conversation ID for the chatflow, must pass the conversation_id of the previous message to continue the conversation
-    llm_description: The conversation ID for the chatflow, must pass the conversation_id of the previous message to continue the conversation
-    form: llm
+      en_US: Whether to keep the conversation context
+      zh_Hans: 是否保持会话上下文
+      pt_BR: Whether to keep the conversation context
+    llm_description: Whether to keep the conversation context
+    form: form
 
 output_schema:
   type: object

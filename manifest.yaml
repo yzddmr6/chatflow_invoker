@@ -1,4 +1,4 @@
-version: 0.0.3
+version: 0.0.4
 type: plugin
 author: yzddmr6
 name: chatflow_invoker
@@ -32,7 +32,9 @@ resource:
       enabled: false
     app:
       enabled: true
-
+    storage:
+      enabled: true
+      size: 1048576
 plugins:
   tools:
     - provider/chatflow_invoker.yaml

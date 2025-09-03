@@ -5,7 +5,7 @@ from dify_plugin import Tool
 from dify_plugin.entities.tool import ToolInvokeMessage
 import json
 
-debug=False
+debug=True
 
 class LocalChatflowInvokerTool(Tool):
     def _invoke(self, tool_parameters: dict[str, Any]) -> Generator[ToolInvokeMessage]:
@@ -23,18 +23,48 @@ class LocalChatflowInvokerTool(Tool):
         else:
             inputs = {}
 
+        keep_session = tool_parameters.get("keep_session", False)
+        current_conversation_id=self.session.conversation_id
+        app_id=tool_parameters.get("app_id")
+        save_key=f"{current_conversation_id}:{app_id}"
+        print("save_key: ", save_key)
+        sub_conversation_id=''
+
+        if keep_session:
+            if self.session.storage.exist(save_key):
+                sub_conversation_id = self.session.storage.get(save_key).decode("utf-8")
+                print(f"sub_conversation_id already exists: {save_key} === {sub_conversation_id}")
+            else:
+                print(f"sub_conversation_id does not exist: {save_key} === {sub_conversation_id}")
+
+        print("sub_conversation_id: ", sub_conversation_id)
         response = self.session.app.chat.invoke(
             app_id=tool_parameters.get("app_id"),
             query=tool_parameters.get("query"),
             inputs=inputs,
             response_mode="streaming",
-            conversation_id=tool_parameters.get("conversation_id", "")  # 可选，留空则创建新对话
+            conversation_id=sub_conversation_id
         )
 
         for data in response:
+            print(json.dumps(data, ensure_ascii=False))
+            
+            if data.get("event") == "workflow_started":
+                if sub_conversation_id=='':
+                    if keep_session:
+                        sub_conversation_id=data.get("conversation_id", "")
+                        print("find sub_conversation_id: ", sub_conversation_id)
+                    try:
+                        self.session.storage.set(save_key, sub_conversation_id.encode("utf-8"))
+                        print(f"saving sub_conversation_id: {save_key} === {sub_conversation_id}")
+                    except Exception as e:
+                        print(f"Error saving sub_conversation_id: {e}")
+
             if data.get("event") == "agent_message" or data.get("event") == "message":
                 content = data.get("answer", "")
                 if debug:
-                    print(json.dumps(data, ensure_ascii=False))
                     print(content)
                 yield self.create_stream_variable_message("stream_output", content)
+            if data.get("event") == "error":
+                raise Exception(data.get("message", "Unknown error"))
+       
