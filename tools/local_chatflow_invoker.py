@@ -23,14 +23,14 @@ class LocalChatflowInvokerTool(Tool):
         else:
             inputs = {}
 
-        keep_session = tool_parameters.get("keep_session", False)
+        keep_conversation = tool_parameters.get("keep_conversation", False)
         current_conversation_id=self.session.conversation_id
         app_id=tool_parameters.get("app_id")
         save_key=f"{current_conversation_id}:{app_id}"
         print("save_key: ", save_key)
         sub_conversation_id=''
 
-        if keep_session:
+        if keep_conversation:
             if self.session.storage.exist(save_key):
                 sub_conversation_id = self.session.storage.get(save_key).decode("utf-8")
                 print(f"sub_conversation_id already exists: {save_key} === {sub_conversation_id}")
@@ -51,7 +51,7 @@ class LocalChatflowInvokerTool(Tool):
             
             if data.get("event") == "workflow_started":
                 if sub_conversation_id=='':
-                    if keep_session:
+                    if keep_conversation:
                         sub_conversation_id=data.get("conversation_id", "")
                         print("find sub_conversation_id: ", sub_conversation_id)
                     try:
