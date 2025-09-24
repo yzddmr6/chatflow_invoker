@@ -13,6 +13,7 @@ identity:
 tools:
   - tools/local_chatflow_invoker.yaml
   - tools/remote_chatflow_invoker.yaml
+  - tools/universal_chatflow_invoker.yaml
 extra:
   python:
     source: provider/chatflow_invoker.py

@@ -1,0 +1,80 @@
+identity:
+  name: universal_chatflow_invoker
+  author: yzddmr6
+  label:
+    en_US: Universal Chatflow Invoker
+    zh_Hans: 通用Chatflow调用
+    pt_BR: Universal Chatflow Invoker
+description:
+  human:
+    en_US: Universal Chatflow invoke, supporting streaming output of LangChain、LangGraph、OpenAI、Bailian etc.
+    zh_Hans: 通用的Chatflow调用，支持LangChain、LangGraph、OpenAI、Bailian等任意流式输出接口的调用
+    pt_BR: Universal Chatflow invoke, supporting streaming output of LangChain、LangGraph、OpenAI、Bailian etc.
+  llm: Universal Chatflow invoke, supporting streaming output of LangChain、LangGraph、OpenAI、Bailian etc.
+parameters:
+  - name: url_base
+    type: string
+    required: true
+    label:
+      en_US: URL
+      zh_Hans: URL
+      pt_BR: URL
+    human_description:
+      en_US: The URL of the remote chatflow to call, for example http://localhost/v1/chat/completions
+      zh_Hans: 需要调用的远程Chatflow的URL，例如:http://localhost/v1/chat/completions
+      pt_BR: The URL of the remote chatflow to call, for example http://localhost/v1/chat/completions
+    llm_description: The URL of the remote chatflow to call, for example http://localhost/v1/chat/completions
+    form: form
+    default: http://localhost/v1/chat/completions
+  - name: header_json
+    type: string
+    required: false
+    default: '{"Authorization": "xxxx"}'
+    label:
+      en_US: Header JSON
+      zh_Hans: Header JSON
+      pt_BR: Header JSON
+    human_description:
+      en_US: JSON string containing headers for the request
+      zh_Hans: 请求的Header信息，JSON字符串格式
+      pt_BR: JSON string containing headers for the request
+    llm_description: JSON string containing headers for the request
+    form: form
+  - name: body_json
+    type: string
+    required: false
+    default: '{"model": "qwen-max", "messages": [{"role": "user", "content": "{{#sys.query#}}"}], "temperature": 0.7, "stream": true}'
+    label:
+      en_US: Body JSON
+      zh_Hans: Body JSON
+      pt_BR: Body JSON
+    human_description:
+      en_US: JSON string containing body for the request
+      zh_Hans: 请求的Body信息，JSON字符串格式
+      pt_BR: JSON string containing body for the request
+    llm_description: JSON string containing body for the request
+    form: form
+  - name: json_path
+    type: string
+    required: true
+    default: $.choices[0].delta.content
+    label:
+      en_US: JSON Path
+      zh_Hans: JSON Path
+      pt_BR: JSON Path
+    human_description:
+      en_US: JSON Path to extract the value from the response, reference jsonpath_ng library syntax, for example：OpenAI API is：$.choices[0].delta.content; Bailian Workflow Application is：$.output.workflow_message.message.content
+      zh_Hans: 从响应中提取返回内容的JSON Path，参考jsonpath_ng库的语法。例如OpenAI类接口为：$.choices[0].delta.content；百炼工作流应用为：$.output.workflow_message.message.content
+      pt_BR: JSON Path to extract the value from the response, reference jsonpath_ng library syntax, for example：OpenAI API is：$.choices[0].delta.content; Bailian Workflow Application is：$.output.workflow_message.message.content
+      llm_description: JSON Path to extract the value from the response, reference jsonpath_ng library syntax, for example：OpenAI API is：$.choices[0].delta.content; Bailian Workflow Application is：$.output.workflow_message.message.content
+    form: form
+
+output_schema:
+  type: object
+  properties:
+    stream_output:
+      type: string
+      description: The streaming output of the chatflow
+extra:
+  python:
+    source: tools/universal_chatflow_invoker.py
