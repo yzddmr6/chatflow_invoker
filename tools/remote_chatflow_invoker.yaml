@@ -20,10 +20,10 @@ parameters:
       zh_Hans: URL
       pt_BR: URL
     human_description:
-      en_US: The URL of the Dify instance to call, for example http://127.0.0.1:5001/v1/chat-messages
-      zh_Hans: 需要调用的远程Dify的URL，例如：http://127.0.0.1:5001/v1/chat-messages
-      pt_BR: The URL of the Dify instance to call, for example http://127.0.0.1:5001/v1/chat-messages
-    llm_description: The URL of the Dify instance to call, for example http://127.0.0.1:5001/v1/chat-messages
+      en_US: The URL of the Dify instance to call, for example http://127.0.0.1/v1/chat-messages
+      zh_Hans: 需要调用的远程Dify的URL，例如：http://127.0.0.1/v1/chat-messages
+      pt_BR: The URL of the Dify instance to call, for example http://127.0.0.1/v1/chat-messages
+    llm_description: The URL of the Dify instance to call, for example http://127.0.0.1/v1/chat-messages
     form: form
   - name: api_key
     type: string
@@ -86,10 +86,10 @@ parameters:
       zh_Hans: Keep Conversation
       pt_BR: Keep Conversation
     human_description:
-      en_US: Whether to keep the conversation context
-      zh_Hans: 是否保持会话上下文
-      pt_BR: Whether to keep the conversation context
-    llm_description: Whether to keep the conversation context
+      en_US: Whether to keep the conversation context, to support memory function
+      zh_Hans: 是否保持会话上下文，以支持记忆功能
+      pt_BR: Whether to keep the conversation context, to support memory function
+    llm_description: Whether to keep the conversation context, to support memory function
     form: form
 
 output_schema:
