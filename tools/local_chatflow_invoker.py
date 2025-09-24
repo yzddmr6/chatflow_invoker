@@ -5,7 +5,7 @@ from dify_plugin import Tool
 from dify_plugin.entities.tool import ToolInvokeMessage
 import json
 
-debug=True
+debug=False
 
 class LocalChatflowInvokerTool(Tool):
     def _invoke(self, tool_parameters: dict[str, Any]) -> Generator[ToolInvokeMessage]:
@@ -47,7 +47,8 @@ class LocalChatflowInvokerTool(Tool):
         )
 
         for data in response:
-            print(json.dumps(data, ensure_ascii=False))
+            if debug:
+                print(json.dumps(data, ensure_ascii=False))
             
             if data.get("event") == "workflow_started":
                 if sub_conversation_id=='':
@@ -67,4 +68,11 @@ class LocalChatflowInvokerTool(Tool):
                 yield self.create_stream_variable_message("stream_output", content)
             if data.get("event") == "error":
                 raise Exception(data.get("message", "Unknown error"))
+            if data.get("event") == "workflow_finished":
+                try:
+                    full_content=data["data"]["outputs"]["answer"]
+                    yield self.create_text_message(text=full_content)
+                except Exception as e:
+                    print(f"Error getting full content: {e}")
+                
        
