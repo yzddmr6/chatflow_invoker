@@ -1,8 +1,11 @@
 ## Chatflow Invoker
 
 **Author:** yzddmr6
+
 **Version:** 0.0.4
+
 **Type:** tool
+
 **Repository:** https://github.com/yzddmr6/chatflow_invoker
 
 ### 更新日志
