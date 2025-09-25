@@ -7,7 +7,7 @@ import json
 import requests
 from jsonpath_ng import parse
 
-debug=True
+debug=False
 
 class UniversalChatflowInvokerTool(Tool):
     def _invoke(self, tool_parameters: dict[str, Any]) -> Generator[ToolInvokeMessage]:
