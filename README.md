@@ -76,7 +76,7 @@ Input Parameters:
 * API Key (required): The API key for the remote Chatflow call you want to make. For the first time, you'll need to generate one from the Access API section in the sidebar.
 * Prompt (required): The prompt to send.
 * Inputs JSON (optional): Input parameters for the Chatflow start node, in JSON string format.
-* User (optional): The Chatflow user ID, used to identify the end user for easy retrieval and statistics.
+* User (required): The Chatflow user ID, used to identify the end user for easy retrieval and statistics.
 * Keep Conversation (required, default True): Whether to maintain conversation context to support memory functionality.
 
 ### Universal Chatflow Call

@@ -84,7 +84,7 @@ Chatflow Invoker可以将Chatflow转换为流程编排中的节点，实现跨Ch
 * API Key（必选）：需要调用的远程Chatflow的API Key，第一次需要从侧边栏 访问API 中生成一个。
 * Prompt（必选）：要发送的Prompt。
 * Inputs JSON（可选）：Chatflow开始节点的输入参数，JSON字符串格式。
-* User（可选）：Chatflow用户标识，用于定义终端用户的身份，方便检索、统计。
+* User（必选）：Chatflow用户标识，用于定义终端用户的身份，方便检索、统计。
 * Keep Conversation（必选，默认为True）：是否保持会话上下文，以支持记忆功能。
 
 
