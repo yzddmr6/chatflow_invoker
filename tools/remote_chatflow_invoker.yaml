@@ -66,7 +66,7 @@ parameters:
     form: llm
   - name: user
     type: string
-    required: false
+    required: true
     label:
       en_US: User
       zh_Hans: User
@@ -80,7 +80,7 @@ parameters:
   - name: keep_conversation
     type: boolean
     default: true
-    required: false
+    required: true
     label:
       en_US: Keep Conversation
       zh_Hans: Keep Conversation
