@@ -24,7 +24,7 @@ parameters:
       zh_Hans: 需要调用的远程Dify的URL，例如：http://127.0.0.1/v1/chat-messages
       pt_BR: The URL of the Dify instance to call, for example http://127.0.0.1/v1/chat-messages
     llm_description: The URL of the Dify instance to call, for example http://127.0.0.1/v1/chat-messages
-    form: form
+    form: llm
   - name: api_key
     type: string
     required: true
@@ -37,7 +37,7 @@ parameters:
       zh_Hans: 需要调用的远程Chatflow的API Key
       pt_BR: The API key of the Dify instance to call
     llm_description: The API key of the Dify instance to call
-    form: form
+    form: llm
   - name: query
     type: string
     required: true
@@ -50,7 +50,7 @@ parameters:
       zh_Hans: 要发送的Prompt
       pt_BR: The prompt to send to the chatflow
     llm_description: The prompt to send to the chatflow
-    form: form
+    form: llm
   - name: inputs_json
     type: string
     required: false
@@ -63,7 +63,7 @@ parameters:
       zh_Hans: Chatflow开始节点的输入参数，JSON字符串格式
       pt_BR: JSON string containing input parameters for the chatflow start node
     llm_description: JSON string containing input parameters for the chatflow start node
-    form: form
+    form: llm
   - name: user
     type: string
     required: false
@@ -76,7 +76,7 @@ parameters:
       zh_Hans: Chatflow用户标识，用于定义终端用户的身份，方便检索、统计。
       pt_BR: The user identifier for the chatflow
     llm_description: The user identifier for the chatflow
-    form: form
+    form: llm
   - name: keep_conversation
     type: boolean
     default: true
@@ -90,7 +90,7 @@ parameters:
       zh_Hans: 是否保持会话上下文，以支持记忆功能
       pt_BR: Whether to keep the conversation context, to support memory function
     llm_description: Whether to keep the conversation context, to support memory function
-    form: form
+    form: llm
 
 output_schema:
   type: object

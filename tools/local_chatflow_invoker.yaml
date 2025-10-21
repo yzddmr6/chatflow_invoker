@@ -24,7 +24,7 @@ parameters:
       zh_Hans: 需要调用的Chatflow的APP ID，可以从Dify的Chatflow页面URL中获取
       pt_BR: The app ID of the chatflow to call, can be obtained from the URL of the Chatflow page in Dify
     llm_description: The app ID of the chatflow to call, can be obtained from the URL of the Chatflow page in Dify
-    form: form
+    form: llm
   - name: query
     type: string
     required: true
@@ -37,7 +37,7 @@ parameters:
       zh_Hans: 要发送的Prompt
       pt_BR: The prompt to send to the chatflow
     llm_description: The prompt to send to the chatflow
-    form: form
+    form: llm
   - name: inputs_json
     type: string
     required: false
@@ -50,7 +50,7 @@ parameters:
       zh_Hans: Chatflow开始节点的输入参数，JSON字符串格式
       pt_BR: JSON string containing input parameters for the chatflow start node
     llm_description: JSON string containing input parameters for the chatflow start node
-    form: form
+    form: llm
   - name: keep_conversation
     type: boolean
     required: false
@@ -64,7 +64,7 @@ parameters:
       zh_Hans: 是否保持会话上下文，以支持记忆功能
       pt_BR: Whether to keep the conversation context, to support memory function
     llm_description: Whether to keep the conversation context, to support memory function
-    form: form
+    form: llm
 
 output_schema:
   type: object
