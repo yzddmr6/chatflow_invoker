@@ -68,11 +68,6 @@ class LocalChatflowInvokerTool(Tool):
                 yield self.create_stream_variable_message("stream_output", content)
             if data.get("event") == "error":
                 raise Exception(data.get("message", "Unknown error"))
-            if data.get("event") == "workflow_finished":
-                try:
-                    full_content=data["data"]["outputs"]["answer"]
-                    yield self.create_text_message(text=full_content)
-                except Exception as e:
-                    print(f"Error getting full content: {e}")
+           
                 
        

@@ -80,12 +80,7 @@ class RemoteChatflowInvokerTool(Tool):
                                 if debug:
                                     print(json.dumps(data, ensure_ascii=False))
                                 raise Exception(data.get("message", "Unknown error"))
-                            if data.get("event") == "workflow_finished":
-                                try:
-                                    full_content=data["data"]["outputs"]["answer"]
-                                    yield self.create_text_message(text=full_content)
-                                except Exception as e:
-                                    print(f"Error getting full content: {e}")
+                            
                                 
                     except json.JSONDecodeError as e:
                         if debug:
