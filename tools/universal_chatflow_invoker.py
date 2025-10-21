@@ -7,21 +7,30 @@ import json
 import requests
 from jsonpath_ng import parse
 
-debug=False
+# 导入 logging 和自定义处理器
+import logging
+from dify_plugin.config.logger_format import plugin_logger_handler
+
+# 使用自定义处理器设置日志
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+logger.addHandler(plugin_logger_handler)
+
 
 class UniversalChatflowInvokerTool(Tool):
     def _invoke(self, tool_parameters: dict[str, Any]) -> Generator[ToolInvokeMessage]:
-        if debug:
-            print(json.dumps(tool_parameters, ensure_ascii=False))
+        logger.info(f"tool_parameters: {json.dumps(tool_parameters, ensure_ascii=False)}")
         if not tool_parameters.get("url_base") or \
         not tool_parameters.get("body_json") or \
         not tool_parameters.get("json_path"):
+            logger.error("URL base, header JSON, body JSON and JSON path are required")
             raise ValueError("URL base, header JSON, body JSON and JSON path are required")
 
         if tool_parameters.get("header_json"):
             try:
                 header_json = json.loads(tool_parameters.get("header_json"))
             except json.JSONDecodeError:
+                logger.error("Header JSON is not a valid JSON string")
                 raise ValueError("Header JSON is not a valid JSON string")
         else:
             header_json = {}
@@ -29,6 +38,7 @@ class UniversalChatflowInvokerTool(Tool):
         try:
             body_json = json.loads(tool_parameters.get("body_json"))
         except json.JSONDecodeError:
+            logger.error("Body JSON is not a valid JSON string")
             raise ValueError("Body JSON is not a valid JSON string")
 
         url = tool_parameters.get('url_base')
@@ -48,8 +58,7 @@ class UniversalChatflowInvokerTool(Tool):
                             # 提取从 "data:" 之后的JSON内容
                             json_content = line[prefix_index + len(prefix):]
                             data = json.loads(json_content.strip()) # OpenAI有空格，百炼没有空格
-                            if debug:
-                                print(json.dumps(data, ensure_ascii=False))
+                            logger.debug(f"data: {json.dumps(data, ensure_ascii=False)}")
                             json_path_expr = parse(json_path)
                             result = json_path_expr.find(data)
                             if result:
@@ -58,6 +67,7 @@ class UniversalChatflowInvokerTool(Tool):
                     except json.JSONDecodeError as e:
                         continue
             else:
+                logger.error(f"Request failed with status code {response.status_code}: {response.text}")
                 raise Exception(
                     f"Request failed with status code {response.status_code}: {response.text}"
                 )
