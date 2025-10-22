@@ -54,7 +54,7 @@ parameters:
   - name: keep_conversation
     type: boolean
     required: true
-    default: true
+    default: false
     label:
       en_US: Keep Conversation
       zh_Hans: Keep Conversation

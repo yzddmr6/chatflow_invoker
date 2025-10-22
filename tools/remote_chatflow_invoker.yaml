@@ -79,7 +79,7 @@ parameters:
     form: llm
   - name: keep_conversation
     type: boolean
-    default: true
+    default: false
     required: true
     label:
       en_US: Keep Conversation

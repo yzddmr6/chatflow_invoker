@@ -13,7 +13,8 @@ from dify_plugin.config.logger_format import plugin_logger_handler
 
 # 使用自定义处理器设置日志
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.INFO)
+# logger.setLevel(logging.DEBUG)
 logger.addHandler(plugin_logger_handler)
 
 
