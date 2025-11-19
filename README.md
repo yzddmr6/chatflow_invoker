@@ -2,13 +2,20 @@
 
 **Author:** yzddmr6
 
-**Version:** 0.0.4
+**Version:** 0.0.6
 
 **Type:** tool
 
 **Repository:** https://github.com/yzddmr6/chatflow_invoker
 
 ### Changelog
+
+#### v0.0.6
+
+* Fixed duplicate output issue: Removed non-streaming output field that caused duplicate output on older versions of Dify for compatibility.
+* Modified field type: Changed input field from form format to llm format for easier troubleshooting.
+* Modified logging output to standard logging format.
+* Changed user parameter type to required by default.
 
 #### v0.0.4
 
